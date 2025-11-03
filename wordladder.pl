@@ -1,5 +1,3 @@
-% wordladder.pl
-% Versão corrigida e funcional em SWI-Prolog.
 % Coloque 'lexico.txt' (cada palavra em uma linha) na mesma pasta.
 % Execute em SWI-Prolog: ?- [wordladder].  then run main. or call main.
 
@@ -8,7 +6,7 @@
 :- use_module(library(assoc)).      % assoc for dist/conn maps
 
 % ---------- Configurações ----------
-word_len(5).      % comprimento das palavras (mudar conforme necessário)
+word_len(5).      % comprimento das palavras 
 max_iters(100).   % limite de iterações BFS
 
 % ---------- Conversão palavra <-> número (8 bits por letra) ----------
@@ -16,7 +14,7 @@ max_iters(100).   % limite de iterações BFS
 make_number(Atom, Number) :-
     atom_codes(Atom, Codes),
     word_len(WL),
-    length(Codes, WL),                 % garante comprimento correto
+    length(Codes, WL),                
     make_number_codes(Codes, 0, 1, Number).
 
 make_number_codes([], Num, _Mult, Num).
@@ -51,7 +49,7 @@ build_pair_lut(PairLut) :-
     MaxIndex is WL - 1,
     findall(Val,
             ( between(0, MaxIndex, I),
-              between(1, 255, J),      % 0 não altera, por isso ignora
+              between(1, 255, J),      % ignora 0
               Shift is J << (I * 8),
               Val = Shift
             ),
